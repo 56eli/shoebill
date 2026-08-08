@@ -69,10 +69,11 @@ See `agent.md`, `AGENT.md`, `AGENTS.md`, `CONTRIBUTING.md`, `docs/README.md`.
 
 ## curation (now)
 
-- All 80 in `docs/funny/` are **confirmed funny** (including initial, migrated, and new batches).
+- All 99 in `docs/funny/` are **confirmed funny** (including initial, migrated, and new batches).
 - New batch (10) → `docs/funny/` (shown) → user later manually demotes to `unfunny/` if needed (disappears after sync)
 - After any move, `node scripts/sync-manifest.js` + push
 - Placeholder deleted — no longer used.
+- **Cache-busting:** After adding/removing images, increment `MANIFEST_VERSION` in `docs/script.js` to ensure returning users fetch the updated manifest.
 
 ## license
 
