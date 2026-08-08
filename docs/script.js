@@ -127,6 +127,16 @@ async function loadImages() {
     "funny/shoebill-windsurfer.jpg",
     "funny/shoebill-woodchopper-flannel-axe.jpg",
     "funny/shoebill-yoga-lily-pad.jpg",
+    "funny/shoebill-cowboy-rodeo.jpg",
+    "funny/shoebill-judge-courtroom.jpg",
+    "funny/shoebill-photographer-camera.jpg",
+    "funny/shoebill-golfer-club.jpg",
+    "funny/shoebill-music-dj.jpg",
+    "funny/shoebill-astronaut-mars.jpg",
+    "funny/shoebill-surgeon-operating-room.jpg",
+    "funny/shoebill-architect-blueprints.jpg",
+    "funny/shoebill-chef-kitchen-fire.jpg",
+    "funny/shoebill-baker-cupcake-frosting.jpg",
   ];
 }
 
