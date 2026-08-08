@@ -43,7 +43,7 @@ docs/
   style.css         # mosaic grid, hover pop (scale 1.02)
   script.js         # loads manifest.json (funny only)
   manifest.json     # list of ALL wall images (funny sorted)
-  funny/            # ✅ shown (all batches default here, 109 currently)
+  funny/            # ✅ shown (all batches default here, 119 currently)
   .nojekyll
 unfunny/            # ❌ never shown, not deployed (repo root only)
 funny/              # alias/mirror of docs/funny at repo root

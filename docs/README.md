@@ -70,5 +70,5 @@ Settings → Pages → Build and deployment → Source: Deploy from a branch →
 
 ## current image count
 
-- **109 images** total in `docs/funny/` as of 2026-08-08.
+- **119 images** total in `docs/funny/` as of 2026-08-08.
 - Regenerate `docs/manifest.json` after adding or moving any wall images.

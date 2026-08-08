@@ -40,7 +40,7 @@
 
 - Wall: `docs/index.html` pure mosaic (no header/footer), dense grid, hover `scale 1.02` + shadow, click lightbox (ESC to close).
 - Manifest: `docs/manifest.json` — source of truth (funny only).
-- Shown: `docs/funny/` → one mosaic (109 currently).
+- Shown: `docs/funny/` → one mosaic (119 currently).
 - Not shown: `unfunny/` (root, outside docs). `placeholder/` deleted.
 - No build step; Pages serves `main` / `docs` directly.
 
