@@ -2,7 +2,7 @@
 
 ## who decides funny?
 
-**Only the owner (`@56eli`) decides what is funny.** AI agents and contributors never overrule. All 30 current images in `docs/funny/` are confirmed funny. `placeholder/` deleted 2026-08-08 — all new batches default to `funny/`; owner will manually mark not-funny at will.
+**Only the owner (`@56eli`) decides what is funny.** AI agents and contributors never overrule. All 80 current images in `docs/funny/` are confirmed funny. `placeholder/` deleted 2026-08-08 — all new batches default to `funny/`; owner will manually mark not-funny at will.
 
 ## workflow (current)
 
@@ -40,7 +40,7 @@
 
 - Wall: `docs/index.html` pure mosaic (no header/footer), dense grid, hover `scale 1.02` + shadow, click lightbox (ESC to close).
 - Manifest: `docs/manifest.json` — source of truth (funny only).
-- Shown: `docs/funny/` → one mosaic (30 currently).
+- Shown: `docs/funny/` → one mosaic (80 currently).
 - Not shown: `unfunny/` (root, outside docs). `placeholder/` deleted.
 - No build step; Pages serves `main` / `docs` directly.
 
