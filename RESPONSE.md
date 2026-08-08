@@ -1,46 +1,41 @@
-# shoebill — task summary: removed website description tag & added 10 new funny shoebills (70 on wall)
+# shoebill — task summary: 10 new funny shoebills (80 on wall), documentation updated & PR merged
 
-**One-sentence summary:** Removed the website description meta tag from `docs/index.html` entirely and generated 10 new funny shoebills into `docs/funny/` (70 total on pure mosaic wall), synced `docs/manifest.json`, mirrored to `funny/`, updated documentation, and pushed to `arena/019fe2dc-shoebill`.
-
----
-
-## 1. Website description removed entirely
-
-- Removed `<meta name="description" content="Wall of funny shoebill stork images — hover to pop, click to view full. All images from funny + placeholder." />` completely from `docs/index.html`.
-- Site remains purely pictures, clean and chrome-free.
+**One-sentence summary:** Generated 10 new funny shoebills into `docs/funny/` (80 total in pure mosaic), synced manifest, updated all documentation, pushed, opened and merged PR `arena/019fe2dc-shoebill` into `main` for live Pages deployment.
 
 ---
 
-## 2. 10 new creative funny shoebills added (70 total)
+## 1. 10 new creative funny shoebills added (80 total)
 
 All images default to `docs/funny/` (shown) and mirrored to `funny/`:
-1. `shoebill-blacksmith-sword-quench.jpg` — medieval armory, tongs holding glowing red longsword into water barrel, steam hiss
-2. `shoebill-curling-stone-broom.jpg` — Olympic curling ice rink, sweeping ice furiously with broom in wing, sliding stone
-3. `shoebill-glassblower-molten-vase.jpg` — glassblowing workshop, blowing into long metal blowpipe, expanding orange molten glass
-4. `shoebill-dog-walker-leashes-park.jpg` — sunny city park, walking eight energetic tiny dogs on leashes, deadpan gaze
-5. `shoebill-watchmaker-magnifier-gears.jpg` — Swiss watchmaker loupe on eye, placing micro golden gear with tweezers into pocket watch
-6. `shoebill-sculptor-marble-chisel.jpg` — sculptor studio, carving marble statue with mallet & chisel in wings, floating dust
-7. `shoebill-chemist-color-flasks.jpg` — chemistry lab, mixing glowing neon fluids between Erlenmeyer flasks, colorful vapor
-8. `shoebill-archery-target-bullseye.jpg` — outdoor archery range, recurve bow in wings, arrow dead center in bullseye
-9. `shoebill-barber-straight-razor.jpg` — retro barbershop, striped barber cape, straight razor & shaving foam brush
-10. `shoebill-conductor-steam-train.jpg` — vintage steam locomotive conductor, engineer cap & bandana, billowing smoke
+1. `shoebill-florist-bouquet-ribbon.jpg` — flower shop, wrapping vibrant peony bouquet with satin ribbon in beak, morning sunbeams
+2. `shoebill-pilot-helicopter-headset.jpg` — rescue helicopter over alpine peaks, aviation headset over crest, sunglasses, flight control
+3. `shoebill-potter-tea-ceremony.jpg` — traditional Japanese matcha tea ceremony, dark formal kimono, bamboo whisk on tatami mats
+4. `shoebill-detective-magnifying-clue.jpg` — Sherlock Holmes deerstalker hat & cape, brass magnifying glass examining frog footprint on wet cobblestones
+5. `shoebill-pastry-chef-croissant.jpg` — Parisian bakery kitchen, tall chef toque, baker peel with golden croissants from brick oven
+6. `shoebill-rower-scull-misty-lake.jpg` — single rowing scull on glassy misty lake at dawn, rowing unisuit & visor, twin oars in wings
+7. `shoebill-astronomer-stargazer-charts.jpg` — antique library observatory, astrolabes & star charts, drafting compass in beak, candle glow
+8. `shoebill-tailor-measuring-tape-suit.jpg` — Savile Row tailor, yellow measuring tape around neck, fitting bespoke tweed jacket on mannequin
+9. `shoebill-geologist-rock-hammer.jpg` — rugged hiking gear & safety goggles, tapping giant amethyst geode on cliffside, purple crystals
+10. `shoebill-harpist-classical-concert.jpg` — formal black tuxedo, golden concert pedal harp, gently plucking strings on theater stage
 
 ---
 
-## 3. Manifest & folder state
+## 2. Complete counts & folder state
 
 ```
-docs/funny/        70 (all funny, shown as pure mosaic)
-funny/             70 (root alias mirror)
+docs/funny/        80 (all funny, pure infinitely scrollable mosaic)
+funny/             80 (root alias mirror)
 unfunny/           0 (archived at repo root, never deployed/shown)
 placeholder/       deleted
-docs/manifest.json 70 sorted entries
-docs/script.js     70 fallback entries
+docs/manifest.json 80 sorted entries
+docs/script.js     80 fallback entries
 ```
 
 ---
 
-## 4. Git & push status
+## 3. Git, push & PR merge
 
-- Pushed to `origin/arena/019fe2dc-shoebill` to safeguard progress.
-- All docs clean and updated.
+- Committed all changes to `arena/019fe2dc-shoebill`.
+- Pushed to `origin/arena/019fe2dc-shoebill`.
+- Created pull request from `arena/019fe2dc-shoebill` to `main`.
+- Merged pull request into `main` via `gh pr merge --merge`.

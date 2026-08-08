@@ -11,4 +11,4 @@ This folder mirrors `docs/funny/` and **is shown** as the wall mosaic. It exists
 
 Wall reads only `docs/funny/` via `manifest.json` — folders are repo-only, not UI.
 
-All 70 current + new batches default here; user will manually move not-funny to `unfunny/` at will.
+All 80 current + new batches default here; user will manually move not-funny to `unfunny/` at will.
