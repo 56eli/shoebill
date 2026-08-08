@@ -1,74 +1,82 @@
-# shoebill — initial setup complete
+# shoebill — update: pure mosaic + placeholder also shown + 10 more
 
-**One-sentence summary:** Built the GitHub Pages wall (`docs/` → `main /docs`) with hover-pop + lightbox and generated 10 funny shoebill images into `docs/funny/` (mirrored to `funny/`) — ready to deploy.
+**One-sentence summary:** Rebuilt wall as pure infinite mosaic (only pictures, gap 2px, no chrome) that shows both `funny` + `placeholder` (20 images now), kept `unfunny` repo-only, and generated 10 more funny shoebills into `docs/placeholder/` after your answer — docs updated and synced.
 
 ---
 
-## what was built
+## changes per your feedback
 
-### site (`docs/`)
-- `index.html` — responsive wall grid (auto-fill minmax 220–260px, masonry feel), header with count, footer meta
-- `style.css` — hover: `translateY(-6px) scale(1.025)` + `box-shadow: 0 16px 40px`, card aspect `1/1`, overlay caption, lightbox full-screen with ESC/ click-outside close
-- `script.js` — loads `manifest.json` (fallback hard-coded list), renders cards with lazy loading, hides 404s, accessible keyboard (Enter/Space)
-- `manifest.json` — source of truth for wall (10 images, auto-synced)
-- `.nojekyll` — disables Jekyll
-- `funny/` — 10 JPGs (see below) + README
+### 1. 10 pics are funny — confirmed
+- Initial 10 in `docs/funny/` (and `funny/` mirror) remain — user confirmed funny.
+- Kept in manifest, still shown.
 
-### folders (spec compliance)
-- `docs/funny/` — **canonical funny wall** (deployed, exclusively funny)
-- `funny/` (root) — alias/mirror of `docs/funny/` (kept in sync via `scripts/sync-funny.sh`)
-- `unfunny/` (root) — not funny archive (with README, outside `docs`)
-- `placeholder/` (root) — funny-enough-for-now staging (with README)
+### 2. Only funny + placeholder on wall, unfunny not
+- `docs/funny/` (10) **+** `docs/placeholder/` (10) → **20 total** in `docs/manifest.json`, rendered as one dense mosaic.
+- `unfunny/` stays at repo root, outside `docs`, never listed in manifest, never deployed, never visible.
+- Folders are **repo-only, not seen on website** — site shows only pictures, no folder labels/UI.
 
-### 10 initial shoebills (all photorealistic, detailed)
-1. `shoebill-manager-flamingo-review.jpg` — tiny suit, clipboard, reviewing flamingo in office
-2. `shoebill-sushi-chef-chaos.jpg` — bandana, beak balancing nigiri, chaotic kitchen
-3. `shoebill-tiny-bicycle-wobble.jpg` — child bike, helmet too small, suburb
-4. `shoebill-bathtub-rubber-ducks.jpg` — shower cap, bubble bath, rubber ducks
-5. `shoebill-detective-noir-frog.jpg` — trench coat, magnifying glass, frog suspect
-6. `shoebill-yoga-lily-pad.jpg` — tree pose on lily pad, confused ducks
-7. `shoebill-barista-espresso-fail.jpg` — apron, glasses, spraying espresso
-8. `shoebill-beach-float-sunscreen.jpg` — flamingo float, sunglasses, sunscreen stripe
-9. `shoebill-librarian-shush.jpg` — glasses, cardigan, shushing, books tumbling
-10. `shoebill-selfie-duckface.jpg` — wing selfie, duck-face, swamp
+### 3. Website purely pictures, mosaic, infinitely scrollable
+- `docs/index.html` stripped to just `<div id="grid">` + lightbox — no header/footer/count.
+- `docs/style.css` → `gap:2px`, `grid-auto-flow:dense`, `grid-auto-rows: 180-300px`, mosaic span variants (`nth-child(7n+2)` rowspan2, `nth-child(7n+5)` colspan2), hover pop `scale 1.02`, fills viewport, infinite scroll = normal page scroll.
+- `docs/script.js` updated to load `funny/*` + `placeholder/*` fallback, no caption/count needed.
 
-All 10 are in `docs/funny/` + mirrored to `funny/` + listed in `docs/manifest.json`.
+### 4. After every ask_user answer also generate 10 more — done + documented
+- Generated 10 new into `docs/placeholder/` + mirrored to `placeholder/` root:
+  - `shoebill-dj-rave-laser.jpg` — headphones, turntable, neon rave
+  - `shoebill-graduation-cap-toss.jpg` — cap, diploma in beak
+  - `shoebill-spa-cucumber-mask.jpg` — robe, cucumber on beak, foot bath
+  - `shoebill-construction-hardhat.jpg` — hard hat, blueprint upside down
+  - `shoebill-wedding-suit-flower.jpg` — tux, bouquet, flamingo bride
+  - `shoebill-astronaut-moon.jpg` — spacesuit, beak through visor, floating fish
+  - `shoebill-boxing-gloves-ring.jpg` — red gloves on wings, sparrow opponent
+  - `shoebill-bbq-grill-apron.jpg` — KISS THE COOK, burger on fire
+  - `shoebill-magician-hat-rabbit.jpg` — top hat, rabbit, wand
+  - `shoebill-shopping-cart-supermarket.jpg` — cart overflowing, cans falling
+- `scripts/sync-manifest.js` now reads **both** `docs/funny/` + `docs/placeholder/` (sorted), writes combined manifest.
+- `scripts/sync-funny.sh` now syncs **both** pairs (`funny` and `placeholder`).
 
-### documentation (agent compliance)
-- `agent.md` (+ `AGENT.md`, `AGENTS.md`, `CLAUDE.md` aliases) — **complete agent bible**: 10-images-always, only-user-decides-funny, folder contract, creativity guide, question-tool usage, push-every-15-min, no-workflow-without-manual-drop-in, session-expires-on-PR-merge, etc.
-- `README.md` — human quickstart + folder map + agent TL;DR
-- `CONTRIBUTING.md` — curation workflow
-- `docs/README.md` — Pages deployment + local preview + sync instructions
-- `scripts/sync-manifest.js` — regenerates manifest from `docs/funny/`
-- `scripts/sync-funny.sh` — keeps `funny/` ↔ `docs/funny/` in sync (rsync or cp fallback)
-- `.github/PULL_REQUEST_TEMPLATE.md` — checklist
+### 5. Documentation updated (put info into docs)
+- `agent.md` (+ `AGENT.md`/`AGENTS.md`/`CLAUDE.md`) — notes pure mosaic, both folders shown, unfunny never, after-every-answer 10, infinite scroll.
+- `README.md` — pure mosaic quickstart, shown/hidden folders, after-answer rule.
+- `CONTRIBUTING.md` — workflow with both folders shown.
+- `docs/README.md` — pure mosaic description, shown = funny+placeholder, unfunny root only.
+- `docs/funny/README.md` + `docs/placeholder/README.md` + `funny/README.md` + `placeholder/README.md` + `unfunny/README.md` — all updated with new rules.
+- `.github/PULL_REQUEST_TEMPLATE.md` — checklist checks both folders.
 
-## GitHub Pages deploy
+### structure now
 
-- Go to **Settings → Pages → Build and deployment → Source: Deploy from a branch → Branch: `main` / `docs` → Save**
-- Push this branch to `main` via PR — wall appears at `https://56eli.github.io/shoebill/` in ~1 min
-- No workflow file needed (avoids manual install); all static
-
-## verification
-
-```bash
-ls -lh docs/funny/*.jpg  # 10 files ~200-300KB each
-node scripts/sync-manifest.js  # rewrites manifest
-python -m http.server 8000 --directory docs  # preview wall
+```
+docs/
+  index.html      # pure mosaic, no chrome
+  style.css       # gap 2px dense mosaic
+  script.js       # loads funny+placeholder
+  manifest.json   # 20 images (10 funny + 10 placeholder sorted)
+  funny/          # 10 ✅ shown
+  placeholder/    # 10 ✅ shown (new batch)
+  .nojekyll
+unfunny/          # 0, never shown, outside docs
+funny/            # mirror of docs/funny (10)
+placeholder/      # mirror of docs/placeholder (10)
 ```
 
-## pushes
+### verification
 
-- Will be pushed to `arena/019fe2c4-shoebill` now (safeguard).
-- Next pushes every 15 min + on sub-task completion.
+```bash
+ls docs/funny/*.jpg | wc -l       # 10
+ls docs/placeholder/*.jpg | wc -l # 10
+node scripts/sync-manifest.js     # writes 20
+python -m http.server 8000 --directory docs  # pure mosaic
+```
+
+Pushed to `arena/019fe2c4-shoebill` — ready for next review.
 
 ---
 
-### what next? (for you, via question tool)
+### what next? (ask_user)
 
-Read this file, then I’ll ask via the question feature — but here are suggestions:
+Per your new rule, I’ll generate **10 more** after you answer. Options:
 
-- **Pick a theme for next 10?** e.g., “shoebill olympics”, “shoebill wedding”, “shoebill space”
-- **Review the 10:** tell me which to keep in `funny`, move to `placeholder`, or banish to `unfunny` — I’ll move + re-sync
-- **Tweak wall:** denser masonry, captions, shuffle, dark mode?
-- **Approve PR to `main`** to go live?
+- Keep mosaic as is, review 20 (which to demote to `unfunny`?)
+- Theme for next 10: shoebill Olympics / horror / office / kids?
+- Approve PR to `main` → live at `https://56eli.github.io/shoebill/`
+- No change — just generate another 10 placeholder batch

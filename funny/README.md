@@ -1,14 +1,14 @@
-# funny (root alias)
+# funny (root alias) — also on the wall
 
-> Canonical location is `docs/funny/` — that is what GitHub Pages serves from `main /docs`.
+> Canonical location is `docs/funny/` — that is what GitHub Pages serves from `main /docs` (pure mosaic, only pictures).
 
-This folder exists so the repo has a top-level `funny/` as described in the project brief.
+This folder exists so the repo has a top-level `funny/` as described — it mirrors `docs/funny/` and **is shown** on the wall alongside `placeholder` as one infinite mosaic. `unfunny` is never shown.
 
 **Rule:** Keep `funny/` (root) and `docs/funny/` in sync.
 
-- Preferred: put promoted funny images directly into `docs/funny/` and optionally copy to `funny/` if you need a root alias.
-- Or use `scripts/sync-funny.sh` if present: `bash scripts/sync-funny.sh` (root → docs)
+- Preferred: put promoted funny images directly into `docs/funny/` and also `cp docs/funny/*.jpg funny/` to keep alias.
+- Or `bash scripts/sync-funny.sh docs->root` / `root->docs` (handles both funny + placeholder).
 
-The wall only reads from `docs/funny/` + `docs/manifest.json`.
+Wall reads `docs/funny/` + `docs/placeholder/` via `manifest.json` — folders are repo-only, not UI on site.
 
-ONLY THE USER decides what is funny. Agents must not delete without user approval — move to `unfunny/` or `placeholder/`.
+ONLY THE USER decides what is funny. Initial 10 here are confirmed funny.

@@ -2,29 +2,32 @@
 
 ## who decides funny?
 
-**Only the owner (`@56eli`) decides what is funny.** AI agents and contributors never overrule.
+**Only the owner (`@56eli`) decides what is funny.** AI agents and contributors never overrule. Initial 10 in `docs/funny/` are confirmed funny.
 
 ## workflow
 
-1. **Agent generates 10 images per prompt** (always, without asking).
-   - Provisional location: `placeholder/` (or `docs/funny/` if owner wants immediate wall).
-   - Filenames: `shoebill-<kebab-case>.jpg`, descriptive.
+1. **Agent generates 10 images per prompt AND after every `ask_user` answer** (always, without asking).
+   - Provisional location: `docs/placeholder/` (+ mirror `placeholder/` root) — **still shown** as part of pure mosaic.
+   - Or `docs/funny/` if owner explicitly wants immediate promoted.
+   - Filenames: `shoebill-<kebab-case>.jpg`, descriptive, detailed.
 
-2. **Owner reviews:**
-   - Funny → move to `docs/funny/` (appears on wall after manifest sync)
-   - Not funny → move to `unfunny/` (archived, not deleted)
-   - Funny enough for now → keep in `placeholder/` (limbo)
+2. **Owner reviews (folders are repo-only, not UI on site):**
+   - Still funny → keep in `docs/funny/` or promote `docs/placeholder/xxx.jpg` → `docs/funny/xxx.jpg` (stays on wall, now confirmed)
+   - Funny enough for now → keep in `docs/placeholder/` (still on wall, staged for later discard)
+   - Not funny → move to `unfunny/` (repo root, **never shown**, not deployed, never in manifest) — disappears from mosaic
+   - Both `funny` + `placeholder` are shown as one infinite pure mosaic; `unfunny` is the only way to hide.
 
 3. **Sync:**
    ```bash
    node scripts/sync-manifest.js
-   # verify docs/manifest.json lists docs/funny/* correctly
+   # reads docs/funny + docs/placeholder, sorted, writes docs/manifest.json
+   # verify both lists appear
    ```
 
 4. **Commit & push:**
    ```bash
-   git add docs/funny docs/manifest.json placeholder unfunny
-   git commit -m "feat: promote 3 shoebills to wall, demote 2"
+   git add docs/funny docs/placeholder docs/manifest.json placeholder funny unfunny
+   git commit -m "feat: promote 3 shoebills to funny, demote 2 to unfunny"
    git push origin arena/019fe2c4-shoebill
    ```
 
@@ -32,13 +35,15 @@
 
 - Keep shoebill anatomy (giant beak, deadpan stare) — humor is context, not distortion.
 - Be absurdly detailed: job, costume, lighting, camera, mood.
-- Square-ish 1024×1024 preferred (wall crops to square, lightbox keeps aspect).
-- Keep `docs/` exclusively funny — don't put `unfunny`/`placeholder` inside `docs/` unless you hide them from `manifest.json`.
+- ~1024×1024 preferred (grid auto-rows 220-300px, `object-fit: cover`; lightbox preserves aspect).
+- Wall is **pure mosaic, infinitely scrollable, gap 2px, no chrome** — purely pictures.
 
 ## site
 
-- Wall: `docs/index.html` grid, hover `translateY(-6px) scale(1.025)`, click lightbox.
-- Manifest: `docs/manifest.json` — source of truth.
+- Wall: `docs/index.html` pure mosaic (no header/footer), dense grid, hover `scale 1.02` + shadow, click lightbox (ESC to close).
+- Manifest: `docs/manifest.json` — source of truth (funny + placeholder).
+- Shown: `docs/funny/` + `docs/placeholder/` → one mosaic.
+- Not shown: `unfunny/` (root, outside docs).
 - No build step; Pages serves `main` / `docs` directly.
 
 ## communication (for agents)
@@ -47,6 +52,7 @@
 - One-sentence summary on task completion.
 - For long explanations, create `RESPONSE.md` and point the user there.
 - Push every 15 min and on sub-task completion.
+- After every `ask_user` answer, generate 10 more funny shoebill images before asking again.
 
 ## workflow changes
 

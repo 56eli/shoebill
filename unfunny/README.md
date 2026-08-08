@@ -1,12 +1,10 @@
-# unfunny
+# unfunny — never on the wall
 
-Images that are **not funny** live here.
+Images that are **not funny** live here — **never shown** on the pure mosaic wall.
 
-- NOT shown on the website (`docs/index.html` only reads `docs/funny/`).
-- NOT deployed to GitHub Pages (this folder is at repo root, outside `docs/`).
-- Agents: if the user flags an image as not funny, move it here. Never delete — user may reconsider.
-- Keep original filename. Add a note in the PR or commit why it was moved if helpful.
+- **NOT shown** on website: `docs/index.html` mosaic only reads `docs/funny/` + `docs/placeholder/` via `manifest.json`. This `unfunny/` is at repo root **outside `docs`** so it’s not deployed to Pages.
+- **NOT deployed** — purely repo archive.
+- Agents: if the user flags an image as not funny, move it here immediately (`docs/funny/*.jpg` or `docs/placeholder/*.jpg` → `unfunny/`), re-sync manifest, push. Never delete — user may reconsider.
+- Keep original filename. Folders are repo-only, not visible as UI on the site — the wall is only pictures.
 
-This folder + `placeholder/` are intentionally outside `docs/` so that `docs/` remains *exclusively* populated with funny shoebills (as required for Pages) — the wall stays clean, the archive stays available.
-
-See `agent.md`.
+See `agent.md`. Initial 10 in `docs/funny/` are confirmed funny per user.
