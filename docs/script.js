@@ -8,7 +8,7 @@ let images = [];
 
 // Cache-busting version for manifest.json - increment when images change
 // This ensures returning users see new images without hard-refresh
-const MANIFEST_VERSION = '20260808-2';
+const MANIFEST_VERSION = '20260808-3';
 
 // load from manifest.json (generated from docs/funny/ only — placeholder deleted 2026-08-08)
 // sorted oldest-first by file mtime (ascending); alphabetical tiebreaker when mtimes match
