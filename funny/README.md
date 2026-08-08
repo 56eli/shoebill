@@ -1,14 +1,14 @@
-# funny (root alias) — also on the wall
+# funny (root alias) — the wall
 
-> Canonical location is `docs/funny/` — that is what GitHub Pages serves from `main /docs` (pure mosaic, only pictures).
+> Canonical location is `docs/funny/` — that is what Pages serves from `main /docs` (pure mosaic, only pictures).
 
-This folder exists so the repo has a top-level `funny/` as described — it mirrors `docs/funny/` and **is shown** on the wall alongside `placeholder` as one infinite mosaic. `unfunny` is never shown.
+This folder mirrors `docs/funny/` and **is shown** as the wall mosaic. It exists for the spec’s top-level `funny/` requirement. `placeholder/` deleted 2026-08-08 — all new images default to `funny/`; `unfunny` never shown.
 
 **Rule:** Keep `funny/` (root) and `docs/funny/` in sync.
 
-- Preferred: put promoted funny images directly into `docs/funny/` and also `cp docs/funny/*.jpg funny/` to keep alias.
-- Or `bash scripts/sync-funny.sh docs->root` / `root->docs` (handles both funny + placeholder).
+- Preferred: generate into `docs/funny/` and also `cp docs/funny/*.jpg funny/`.
+- Or `bash scripts/sync-funny.sh docs->root` / `root->docs`.
 
-Wall reads `docs/funny/` + `docs/placeholder/` via `manifest.json` — folders are repo-only, not UI on site.
+Wall reads only `docs/funny/` via `manifest.json` — folders are repo-only, not UI.
 
-ONLY THE USER decides what is funny. Initial 10 here are confirmed funny.
+All 30 current + new batches default here; user will manually move not-funny to `unfunny/` at will.

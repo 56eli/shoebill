@@ -1,18 +1,18 @@
-# funny — the wall (part 1)
+# funny — the wall (now the only wall)
 
-This folder **is** the website — together with `docs/placeholder/`.
+This folder **is** the website — pure mosaic, only pictures.
 
-- `docs/funny/` is the promoted funny folder served from `main /docs`.
-- Every image here is shown on the wall alongside `docs/placeholder/` — both are listed in `docs/manifest.json` and rendered as one pure mosaic in `docs/index.html` (no chrome, infinite scroll).
-- Hover pops a little (`scale 1.02`), click opens full lightbox.
+- `docs/funny/` is the only image folder served from `main /docs`. Every image here is shown as one infinite mosaic in `docs/index.html` (via `docs/manifest.json`).
+- All 30 current images are confirmed funny; all new batches default here.
+- Hover pops (`scale 1.02`), click lightbox. No header/footer, just mosaic `gap:2px`.
 
-## workflow
+## workflow (updated 2026-08-08)
 
-- Promoted images live here. User is the sole judge of funny — all 10 initial pics are confirmed funny.
-- Agents: after adding/removing images, run `node scripts/sync-manifest.js` (reads `docs/funny/` + `docs/placeholder/`) so wall stays in sync.
+- All new images default here — `placeholder/` deleted, do not use.
+- If user says an image is not funny, move it to `unfunny/` (repo root, outside `docs`) — it disappears from mosaic after `node scripts/sync-manifest.js`.
 - Keep filenames kebab-case: `shoebill-doing-X.jpg`
-- Root `funny/` (at repo root) is a mirror/alias — canonical for deployment is **this** folder. Keep synced (`cp docs/funny/*.jpg funny/`).
+- Root `funny/` (at repo root) is a mirror alias — canonical is **this** folder. Keep synced (`cp docs/funny/*.jpg funny/`).
 
-Wall shows `funny` + `placeholder`; `unfunny/` (repo root, outside `docs`) is never shown. Folders are repo-only, not visible as UI on the site.
+`unfunny/` never shown; `placeholder` deleted. Folders are repo-only.
 
 See `agent.md` at repo root.

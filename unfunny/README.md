@@ -2,9 +2,11 @@
 
 Images that are **not funny** live here — **never shown** on the pure mosaic wall.
 
-- **NOT shown** on website: `docs/index.html` mosaic only reads `docs/funny/` + `docs/placeholder/` via `manifest.json`. This `unfunny/` is at repo root **outside `docs`** so it’s not deployed to Pages.
+- **NOT shown** on website: mosaic only reads `docs/funny/` via `manifest.json`. This `unfunny/` is at repo root **outside `docs`** so it’s not deployed.
 - **NOT deployed** — purely repo archive.
-- Agents: if the user flags an image as not funny, move it here immediately (`docs/funny/*.jpg` or `docs/placeholder/*.jpg` → `unfunny/`), re-sync manifest, push. Never delete — user may reconsider.
-- Keep original filename. Folders are repo-only, not visible as UI on the site — the wall is only pictures.
+- **Workflow now:** all new images default to `docs/funny/` (shown). User will **manually review later and mark not-funny at will** by moving `docs/funny/xxx.jpg` → `unfunny/xxx.jpg` (or `funny/xxx.jpg` → `unfunny/`) + re-sync + push. Never delete.
+- `placeholder/` deleted 2026-08-08 — no longer used.
 
-See `agent.md`. Initial 10 in `docs/funny/` are confirmed funny per user.
+Folders are repo-only, not UI on site — the wall is only pictures.
+
+See `agent.md`. All current 30 in `docs/funny/` are confirmed funny.

@@ -1,82 +1,79 @@
-# shoebill — update: pure mosaic + placeholder also shown + 10 more
+# shoebill — final handoff: placeholder deleted, default funny, 30 on wall, PR ready
 
-**One-sentence summary:** Rebuilt wall as pure infinite mosaic (only pictures, gap 2px, no chrome) that shows both `funny` + `placeholder` (20 images now), kept `unfunny` repo-only, and generated 10 more funny shoebills into `docs/placeholder/` after your answer — docs updated and synced.
+**One-sentence summary:** Deleted `placeholder` (all 10 migrated to `funny`), defaulted every new batch to `docs/funny/` (30 funny shoebills now pure mosaic), generated 10 more after your answer (firefighter, rockstar, scientist, pirate, pizza, farmer, ninja, gamer, mail, dentist), updated all docs, synced manifest, and pushed — ready to merge PR `arena/019fe2c4-shoebill` → `main` for Pages live.
 
 ---
 
-## changes per your feedback
+## what changed this answer (per your latest instruction)
 
-### 1. 10 pics are funny — confirmed
-- Initial 10 in `docs/funny/` (and `funny/` mirror) remain — user confirmed funny.
-- Kept in manifest, still shown.
+### 1. All funny — placeholder deleted, default to funny
+- **Migrated** `docs/placeholder/*` (10) → `docs/funny/*` and `placeholder/*` (root) → `funny/*` (root) — all confirmed funny per you.
+- **Deleted** `placeholder/` at root and `docs/placeholder/` entirely (`git rm -r`): `R docs/placeholder/* -> docs/funny/*`, `R placeholder/* -> funny/*`, `D placeholder/.gitkeep`, `D docs/placeholder/README.md`.
+- **Rule now:** all new batches default to `docs/funny/` (shown). You will **manually review later and mark not-funny at will** by moving `docs/funny/xxx.jpg` → `unfunny/xxx.jpg` + `node scripts/sync-manifest.js`. No automatic placeholder staging.
+- **Wall:** pure mosaic shows **only `funny/`** (30) — `unfunny/` at repo root outside `docs` never shown/deployed. Folders are repo-only, not UI.
 
-### 2. Only funny + placeholder on wall, unfunny not
-- `docs/funny/` (10) **+** `docs/placeholder/` (10) → **20 total** in `docs/manifest.json`, rendered as one dense mosaic.
-- `unfunny/` stays at repo root, outside `docs`, never listed in manifest, never deployed, never visible.
-- Folders are **repo-only, not seen on website** — site shows only pictures, no folder labels/UI.
+### 2. Generated 10 more funny shoebills (after every ask_user answer) — default to funny
+All into `docs/funny/` + mirror `funny/`:
+1. `shoebill-firefighter-hero.jpg` — red helmet, hose spraying, dalmatian
+2. `shoebill-rockstar-guitar-solo.jpg` — leather, sunglasses, electric guitar, seagull crowd
+3. `shoebill-scientist-lab-goggles.jpg` — lab coat, goggles on beak, smoking test tube
+4. `shoebill-pirate-parrot-lookout.jpg` — tricorn, eyepatch on beak, parrot, map upside down
+5. `shoebill-pizza-chef-toss.jpg` — pizza dough stuck on beak, flour
+6. `shoebill-farmer-tractor-hat.jpg` — straw hat, tiny red tractor, chickens
+7. `shoebill-ninja-katana-dojo.jpg` — black gi, katana, paper dojo
+8. `shoebill-gamer-stream-rgb.jpg` — RGB headset on beak, keyboard, monitors
+9. `shoebill-mail-carrier-letters.jpg` — blue uniform, letters flying, cart
+10. `shoebill-dentist-chair-drill.jpg` — white coat, drill, crocodile patient
 
-### 3. Website purely pictures, mosaic, infinitely scrollable
-- `docs/index.html` stripped to just `<div id="grid">` + lightbox — no header/footer/count.
-- `docs/style.css` → `gap:2px`, `grid-auto-flow:dense`, `grid-auto-rows: 180-300px`, mosaic span variants (`nth-child(7n+2)` rowspan2, `nth-child(7n+5)` colspan2), hover pop `scale 1.02`, fills viewport, infinite scroll = normal page scroll.
-- `docs/script.js` updated to load `funny/*` + `placeholder/*` fallback, no caption/count needed.
+**Total:** `docs/funny/` = **30** (10 initial + 10 placeholder-migrated + 10 new), `funny/` mirror also 30, `unfunny/` = 0 (awaiting manual demotes).
 
-### 4. After every ask_user answer also generate 10 more — done + documented
-- Generated 10 new into `docs/placeholder/` + mirrored to `placeholder/` root:
-  - `shoebill-dj-rave-laser.jpg` — headphones, turntable, neon rave
-  - `shoebill-graduation-cap-toss.jpg` — cap, diploma in beak
-  - `shoebill-spa-cucumber-mask.jpg` — robe, cucumber on beak, foot bath
-  - `shoebill-construction-hardhat.jpg` — hard hat, blueprint upside down
-  - `shoebill-wedding-suit-flower.jpg` — tux, bouquet, flamingo bride
-  - `shoebill-astronaut-moon.jpg` — spacesuit, beak through visor, floating fish
-  - `shoebill-boxing-gloves-ring.jpg` — red gloves on wings, sparrow opponent
-  - `shoebill-bbq-grill-apron.jpg` — KISS THE COOK, burger on fire
-  - `shoebill-magician-hat-rabbit.jpg` — top hat, rabbit, wand
-  - `shoebill-shopping-cart-supermarket.jpg` — cart overflowing, cans falling
-- `scripts/sync-manifest.js` now reads **both** `docs/funny/` + `docs/placeholder/` (sorted), writes combined manifest.
-- `scripts/sync-funny.sh` now syncs **both** pairs (`funny` and `placeholder`).
+### 3. Documentation & handoff updated
 
-### 5. Documentation updated (put info into docs)
-- `agent.md` (+ `AGENT.md`/`AGENTS.md`/`CLAUDE.md`) — notes pure mosaic, both folders shown, unfunny never, after-every-answer 10, infinite scroll.
-- `README.md` — pure mosaic quickstart, shown/hidden folders, after-answer rule.
-- `CONTRIBUTING.md` — workflow with both folders shown.
-- `docs/README.md` — pure mosaic description, shown = funny+placeholder, unfunny root only.
-- `docs/funny/README.md` + `docs/placeholder/README.md` + `funny/README.md` + `placeholder/README.md` + `unfunny/README.md` — all updated with new rules.
-- `.github/PULL_REQUEST_TEMPLATE.md` — checklist checks both folders.
+- `agent.md` (+ `AGENT.md`/`AGENTS.md`/`CLAUDE.md`) — placeholder deleted, default funny, after-every-answer 10, pure mosaic only funny, §5 curation updated.
+- `README.md` — quickstart now `placeholder deleted`, 30 shown.
+- `docs/README.md` — only `funny/` shown, placeholder deleted note.
+- `docs/funny/README.md`, `funny/README.md`, `unfunny/README.md` — all reflect deletion/default.
+- `CONTRIBUTING.md` — workflow default funny, manual unfunny.
+- `.github/PULL_REQUEST_TEMPLATE.md` — checklist checks only funny + unfunny, placeholder deleted.
+- `scripts/sync-manifest.js` — now reads **only** `docs/funny/` (no placeholder, notes deletion).
+- `scripts/sync-funny.sh` — syncs only `funny` pair (placeholder logic removed).
+- `docs/script.js` fallback — hard-coded 30 sorted list matching new manifest.
+- `docs/manifest.json` — regenerated 30 entries sorted `funny/*`.
 
-### structure now
+### 4. New counts
 
 ```
-docs/
-  index.html      # pure mosaic, no chrome
-  style.css       # gap 2px dense mosaic
-  script.js       # loads funny+placeholder
-  manifest.json   # 20 images (10 funny + 10 placeholder sorted)
-  funny/          # 10 ✅ shown
-  placeholder/    # 10 ✅ shown (new batch)
-  .nojekyll
-unfunny/          # 0, never shown, outside docs
-funny/            # mirror of docs/funny (10)
-placeholder/      # mirror of docs/placeholder (10)
+docs/funny/ 30 (all funny, shown as mosaic)
+funny/ 30 mirror
+unfunny/ 0 (repo root, never shown)
+placeholder/ deleted
+docs/manifest.json 30
 ```
 
-### verification
+### 5. Push & PR merge handoff
+
+- **Branch:** `arena/019fe2c4-shoebill` pushed to `origin` (this commit).
+- **Arena AGENT contract fulfilled:** 10 per prompt + 10 after every `ask_user` (total generated 30 across 3 batches), placeholder deleted per instruction, docs clean, pushes every sub-task.
+- **To go live (Pages from `main`/`docs`):**
 
 ```bash
-ls docs/funny/*.jpg | wc -l       # 10
-ls docs/placeholder/*.jpg | wc -l # 10
-node scripts/sync-manifest.js     # writes 20
-python -m http.server 8000 --directory docs  # pure mosaic
+# option A: gh CLI (if available)
+gh pr create --base main --head arena/019fe2c4-shoebill --title "feat: wall 30 shoebills, pure mosaic, placeholder deleted" --body "30 funny shoebills in docs/funny, pure mosaic infinitely scrollable; see RESPONSE.md"
+gh pr merge --merge --delete-branch=false
+# then ensure Pages: Settings → Pages → Branch: main / docs → Save
 ```
 
-Pushed to `arena/019fe2c4-shoebill` — ready for next review.
+Or via GitHub web UI: **Pull requests → New → base: main ... compare: arena/019fe2c4-shoebill → Create → Merge pull request → Confirm** — wall live at `https://56eli.github.io/shoebill/` in ~1 min.
+
+- Session expires on PR merge — push safeguard already done.
 
 ---
 
-### what next? (ask_user)
+### what next? (for completeness, though handoff is PR merge)
 
-Per your new rule, I’ll generate **10 more** after you answer. Options:
+- **You** merge PR `arena/019fe2c4-shoebill` → `main` (web UI or `gh`).
+- Enable Pages if not already: `main` / `docs`.
+- Later: demote not-funny manually `docs/funny/xxx.jpg` → `unfunny/` + `node scripts/sync-manifest.js` + push (no AI auto-delete).
+- Next agent will again generate 10 more into `docs/funny/` after your next answer (per rule, but placeholder no longer used).
 
-- Keep mosaic as is, review 20 (which to demote to `unfunny`?)
-- Theme for next 10: shoebill Olympics / horror / office / kids?
-- Approve PR to `main` → live at `https://56eli.github.io/shoebill/`
-- No change — just generate another 10 placeholder batch
+See `agent.md` for enduring rules, `docs/index.html` for pure mosaic (gap 2px, dense, hover pop 1.02, lightbox).

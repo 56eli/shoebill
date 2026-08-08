@@ -6,8 +6,8 @@ const lightboxClose = document.getElementById('lightbox-close');
 
 let images = [];
 
-// load from manifest.json (generated from docs/funny + docs/placeholder)
-// fallback is hard-coded 20 to survive 404s — keep in sync via scripts/sync-manifest.js
+// load from manifest.json (generated from docs/funny/ only — placeholder deleted 2026-08-08)
+// fallback hard-coded 30 — keep in sync via scripts/sync-manifest.js
 async function loadImages() {
   try {
     const res = await fetch('manifest.json', { cache: 'no-store' });
@@ -21,26 +21,36 @@ async function loadImages() {
     console.warn('manifest fetch failed, using fallback', e);
   }
   return [
+    "funny/shoebill-astronaut-moon.jpg",
     "funny/shoebill-barista-espresso-fail.jpg",
     "funny/shoebill-bathtub-rubber-ducks.jpg",
+    "funny/shoebill-bbq-grill-apron.jpg",
     "funny/shoebill-beach-float-sunscreen.jpg",
+    "funny/shoebill-boxing-gloves-ring.jpg",
+    "funny/shoebill-construction-hardhat.jpg",
+    "funny/shoebill-dentist-chair-drill.jpg",
     "funny/shoebill-detective-noir-frog.jpg",
+    "funny/shoebill-dj-rave-laser.jpg",
+    "funny/shoebill-farmer-tractor-hat.jpg",
+    "funny/shoebill-firefighter-hero.jpg",
+    "funny/shoebill-gamer-stream-rgb.jpg",
+    "funny/shoebill-graduation-cap-toss.jpg",
     "funny/shoebill-librarian-shush.jpg",
+    "funny/shoebill-magician-hat-rabbit.jpg",
+    "funny/shoebill-mail-carrier-letters.jpg",
     "funny/shoebill-manager-flamingo-review.jpg",
+    "funny/shoebill-ninja-katana-dojo.jpg",
+    "funny/shoebill-pirate-parrot-lookout.jpg",
+    "funny/shoebill-pizza-chef-toss.jpg",
+    "funny/shoebill-rockstar-guitar-solo.jpg",
+    "funny/shoebill-scientist-lab-goggles.jpg",
     "funny/shoebill-selfie-duckface.jpg",
+    "funny/shoebill-shopping-cart-supermarket.jpg",
+    "funny/shoebill-spa-cucumber-mask.jpg",
     "funny/shoebill-sushi-chef-chaos.jpg",
     "funny/shoebill-tiny-bicycle-wobble.jpg",
-    "funny/shoebill-yoga-lily-pad.jpg",
-    "placeholder/shoebill-astronaut-moon.jpg",
-    "placeholder/shoebill-bbq-grill-apron.jpg",
-    "placeholder/shoebill-boxing-gloves-ring.jpg",
-    "placeholder/shoebill-construction-hardhat.jpg",
-    "placeholder/shoebill-dj-rave-laser.jpg",
-    "placeholder/shoebill-graduation-cap-toss.jpg",
-    "placeholder/shoebill-magician-hat-rabbit.jpg",
-    "placeholder/shoebill-shopping-cart-supermarket.jpg",
-    "placeholder/shoebill-spa-cucumber-mask.jpg",
-    "placeholder/shoebill-wedding-suit-flower.jpg"
+    "funny/shoebill-wedding-suit-flower.jpg",
+    "funny/shoebill-yoga-lily-pad.jpg"
   ];
 }
 

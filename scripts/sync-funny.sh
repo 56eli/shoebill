@@ -1,15 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
-# sync-funny.sh — keep root funny/placeholder and docs/funny/placeholder in sync
-# Also syncs placeholder (both shown on mosaic). unfunny stays at root only, never in docs.
+# sync-funny.sh — keep root funny/ and docs/funny/ in sync
+# placeholder deleted 2026-08-08 — all new images go to funny by default
+# unfunny stays at root only, never in docs
 # Usage: bash scripts/sync-funny.sh [root->docs|docs->root]
-# Default: root -> docs (if root has files)
+# Default: root -> docs
 DIR="$(cd "$(dirname "$0")/.." && pwd)"
 ROOT_FUNNY="$DIR/funny"
 DOCS_FUNNY="$DIR/docs/funny"
-ROOT_PLACEHOLDER="$DIR/placeholder"
-DOCS_PLACEHOLDER="$DIR/docs/placeholder"
-
 MODE="${1:-root->docs}"
 
 sync_pair() {
@@ -32,20 +30,12 @@ sync_pair() {
 
 if [[ "$MODE" == "docs->root" ]]; then
   sync_pair "$DOCS_FUNNY" "$ROOT_FUNNY" "funny"
-  sync_pair "$DOCS_PLACEHOLDER" "$ROOT_PLACEHOLDER" "placeholder"
-  node "$DIR/scripts/sync-manifest.js"
 else
-  # root -> docs
   if compgen -G "$ROOT_FUNNY/*.jpg" > /dev/null || compgen -G "$ROOT_FUNNY/*.png" > /dev/null || compgen -G "$ROOT_FUNNY/*.jpeg" > /dev/null; then
     sync_pair "$ROOT_FUNNY" "$DOCS_FUNNY" "funny"
   else
-    echo "No images in funny/ to sync — skipping funny"
+    echo "No images in funny/ to sync — skipping"
   fi
-  if compgen -G "$ROOT_PLACEHOLDER/*.jpg" > /dev/null || compgen -G "$ROOT_PLACEHOLDER/*.png" > /dev/null || compgen -G "$ROOT_PLACEHOLDER/*.jpeg" > /dev/null; then
-    sync_pair "$ROOT_PLACEHOLDER" "$DOCS_PLACEHOLDER" "placeholder"
-  else
-    echo "No images in placeholder/ to sync — skipping placeholder"
-  fi
-  node "$DIR/scripts/sync-manifest.js"
 fi
-echo "Done. Wall now shows funny + placeholder (unfunny never shown)."
+node "$DIR/scripts/sync-manifest.js"
+echo "Done. Wall shows docs/funny only (unfunny at root never shown, placeholder deleted)."
