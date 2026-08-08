@@ -21,6 +21,7 @@ async function loadImages() {
     console.warn('manifest fetch failed, using fallback', e);
   }
   return [
+    "funny/shoebill-archaeologist-dino-bones.jpg",
     "funny/shoebill-astronaut-moon.jpg",
     "funny/shoebill-astronomer-telescope-stargazing.jpg",
     "funny/shoebill-barista-espresso-fail.jpg",
@@ -31,6 +32,7 @@ async function loadImages() {
     "funny/shoebill-blacksmith-anvil-hammer.jpg",
     "funny/shoebill-bowling-strike-alley.jpg",
     "funny/shoebill-boxing-gloves-ring.jpg",
+    "funny/shoebill-carpenter-workbench-saw.jpg",
     "funny/shoebill-construction-hardhat.jpg",
     "funny/shoebill-deep-sea-diver-submersible.jpg",
     "funny/shoebill-dentist-chair-drill.jpg",
@@ -38,15 +40,20 @@ async function loadImages() {
     "funny/shoebill-disco-skater-quads.jpg",
     "funny/shoebill-dj-rave-laser.jpg",
     "funny/shoebill-farmer-tractor-hat.jpg",
+    "funny/shoebill-fencer-epee-mask.jpg",
     "funny/shoebill-firefighter-hero.jpg",
     "funny/shoebill-gamer-stream-rgb.jpg",
     "funny/shoebill-gardener-bonsai-shears.jpg",
     "funny/shoebill-graduation-cap-toss.jpg",
     "funny/shoebill-ice-sculptor-chainsaw-swan.jpg",
+    "funny/shoebill-karate-black-belt-brick.jpg",
     "funny/shoebill-librarian-shush.jpg",
+    "funny/shoebill-lifeguard-tower-whistle.jpg",
+    "funny/shoebill-magician-escape-artist.jpg",
     "funny/shoebill-magician-hat-rabbit.jpg",
     "funny/shoebill-mail-carrier-letters.jpg",
     "funny/shoebill-manager-flamingo-review.jpg",
+    "funny/shoebill-meteorologist-weather-map.jpg",
     "funny/shoebill-ninja-katana-dojo.jpg",
     "funny/shoebill-orchestra-conductor-baton.jpg",
     "funny/shoebill-painter-easel-beret.jpg",
@@ -64,14 +71,17 @@ async function loadImages() {
     "funny/shoebill-selfie-duckface.jpg",
     "funny/shoebill-shopping-cart-supermarket.jpg",
     "funny/shoebill-skiing-snow-slopes.jpg",
+    "funny/shoebill-sommelier-wine-glass.jpg",
     "funny/shoebill-spa-cucumber-mask.jpg",
+    "funny/shoebill-subway-commuter-newspaper.jpg",
     "funny/shoebill-sushi-chef-chaos.jpg",
     "funny/shoebill-tiny-bicycle-wobble.jpg",
     "funny/shoebill-traffic-cop-whistle-vest.jpg",
     "funny/shoebill-wedding-suit-flower.jpg",
+    "funny/shoebill-welder-spark-mask.jpg",
     "funny/shoebill-woodchopper-flannel-axe.jpg",
     "funny/shoebill-yoga-lily-pad.jpg"
-  ];
+];
 }
 
 function render(list){
