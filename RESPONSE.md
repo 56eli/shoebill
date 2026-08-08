@@ -1,37 +1,46 @@
-# shoebill — task summary: 10 new funny shoebills added (40 on wall), synced & pushed
+# shoebill — task summary: mobile optimization & 10 new funny shoebills (50 on wall)
 
-**One-sentence summary:** Generated 10 new funny shoebill images into `docs/funny/` (40 total on pure mosaic wall), synced `docs/manifest.json`, mirrored to `funny/`, updated documentation, and pushed to `arena/019fe2dc-shoebill`.
+**One-sentence summary:** Optimized GitHub Pages for mobile devices (safe-area insets, responsive 2-column mobile grid, touch active states, swipe-to-dismiss lightbox, background scroll locking) and generated 10 new funny shoebills (50 total in `docs/funny/`), synced manifest, and pushed to `arena/019fe2dc-shoebill`.
 
 ---
 
-## what changed this prompt
+## 1. Mobile user experience optimizations
 
-### 1. Generated 10 fresh, highly creative shoebill images
-All images default to `docs/funny/` and are mirrored to `funny/`:
-1. `shoebill-pilot-airplane-cockpit.jpg` — aviator sunglasses, captain hat, cockpit flight yoke, instrument panels, clouds
-2. `shoebill-scuba-diver-coral-reef.jpg` — scuba goggles on beak, mini oxygen tank, tropical coral reef, startled clownfish
-3. `shoebill-orchestra-conductor-baton.jpg` — formal tuxedo tailcoat, white bowtie, baton, opera house stage, swan violinists
-4. `shoebill-pancake-breakfast-syrup.jpg` — red checkered bib, giant pancake stack, maple syrup, diner booth
-5. `shoebill-bowling-strike-alley.jpg` — 1970s bowling shirt, wooden lane, bowling ball strike, flying pins, neon glow
-6. `shoebill-gardener-bonsai-shears.jpg` — gardening overalls, sunhat, pruning shears, delicate bonsai tree, zen garden
-7. `shoebill-roller-coaster-front-seat.jpg` — front car of looping roller coaster, wind-blown feathers, calm deadpan stare vs screaming riders
-8. `shoebill-painter-easel-beret.jpg` — French beret, paint-splattered smock, easel painting of fish, palette and brush
-9. `shoebill-skiing-snow-slopes.jpg` — ski goggles on bill, neon puffer jacket, ski poles, twin skis, alpine mountain peaks
-10. `shoebill-disco-skater-quads.jpg` — 4-wheel quad roller skates, rainbow wristbands/headband, disco ball lights, roller rink
+- **Safe-area insets & notch support:** Added `viewport-fit=cover`, `<meta name="theme-color" content="#ffffff" />`, and CSS `env(safe-area-inset-top)`, `env(safe-area-inset-bottom)`, `env(safe-area-inset-left)`, `env(safe-area-inset-right)` so cards and UI seamlessly fit iPhone notches, dynamic islands, and Android navigation bars.
+- **Mobile-friendly masonry grid:** 
+  - Standard mobile screens (< 480px) now use a balanced 2-column responsive layout `repeat(2, 1fr)` with `minmax(140px, 32vw)` row height to avoid single-column blowout or horizontal scrolling.
+  - Tablets (480px–680px): `auto-fill, minmax(180px, 1fr)`.
+  - Desktop (680px+): `minmax(220px, 1fr)` up to `300px` on wide screens.
+- **Touch feedback without sticky hover:**
+  - Used `@media (hover: hover)` so desktop pop scale (`translateY(-4px) scale(1.02)`) only triggers on mouse hover, preventing stuck hover states on touchscreens.
+  - Added fast touch response `.card:active { transform: scale(0.97); opacity: 0.94; }` with `-webkit-tap-highlight-color: transparent;` and `touch-action: manipulation;`.
+- **Mobile lightbox improvements:**
+  - Safe-area positioned 48×48px high-contrast close button for easy one-thumb tapping.
+  - Added swipe-down / swipe-up gesture detection (`touchstart` / `touchend`) to dismiss lightbox with natural finger swiping.
+  - Prevented background scroll chaining / body jumping on iOS Safari and Android Chrome while lightbox is active.
 
-### 2. Manifest & site updated
-- Ran `node scripts/sync-manifest.js` → writes sorted 40 entries to `docs/manifest.json`.
-- Updated `docs/script.js` fallback list to 40 items.
-- Mirrored all images to root `funny/`.
-- Pure mosaic wall (`docs/index.html`, `docs/style.css`) renders all 40 images with `gap: 2px`, dense masonry layout, hover pop (`scale 1.02`), and lightbox full preview.
+---
 
-### 3. Counts & folder state
-- `docs/funny/`: 40 images (all funny, shown as pure mosaic)
-- `funny/`: 40 images (root alias/mirror)
-- `unfunny/`: 0 images (archived at repo root, never shown/deployed)
-- `placeholder/`: deleted (all batches default directly to funny)
-- `docs/manifest.json`: 40 entries sorted alphabetically
+## 2. 10 new creative funny shoebills added (50 total)
 
-### 4. Git & push
-- Working on fixed session branch `arena/019fe2dc-shoebill`.
-- Pushed to `origin/arena/019fe2dc-shoebill` to safeguard progress.
+All images generated into `docs/funny/` (shown) and mirrored to `funny/`:
+1. `shoebill-blacksmith-anvil-hammer.jpg` — leather apron, glowing horseshoe on anvil, hammer swing, sparks, stone forge
+2. `shoebill-deep-sea-diver-submersible.jpg` — deep-sea exploration submersible, porthole view, bioluminescent jellyfish/anglerfish, yellow crew cap
+3. `shoebill-ice-sculptor-chainsaw-swan.jpg` — winter park, mini chainsaw, intricate ice duck sculpture, ear protection
+4. `shoebill-pottery-wheel-messy-clay.jpg` — spinning pottery wheel, giant beak poking lopsided clay blob, clay splatters, studio light
+5. `shoebill-safari-tour-guide-binoculars.jpg` — open-roof safari jeep, oversized binoculars, safari vest, confused savanna giraffe
+6. `shoebill-traffic-cop-whistle-vest.jpg` — neon reflective vest, white gloves, HALT wing gesture, whistle in beak, yellow city cabs
+7. `shoebill-astronomer-telescope-stargazing.jpg` — observatory dome, giant brass telescope eyepiece, star nightcap, nebula glow
+8. `shoebill-beekeeper-protective-suit-honey.jpg` — mesh beekeeper veil over beak, white suit, honey frame, orchard meadow
+9. `shoebill-woodchopper-flannel-axe.jpg` — red plaid flannel shirt, knit beanie, axe in tree stump, snowy pine forest
+10. `shoebill-samurai-armor-cherry-blossom.jpg` — ornate Japanese samurai armor & helmet, pink cherry blossoms, pagoda
+
+---
+
+## 3. Manifest & folder state
+
+- `docs/funny/`: 50 images (pure mosaic wall, all funny by default)
+- `funny/`: 50 images (root alias)
+- `unfunny/`: 0 images (archived outside `docs`, never deployed/shown)
+- `docs/manifest.json`: 50 sorted entries
+- `docs/script.js`: fallback array updated to 50 items
