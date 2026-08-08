@@ -11,7 +11,7 @@ let images = [];
 // fallback hard-coded 80 — keep in sync via scripts/sync-manifest.js
 async function loadImages() {
   try {
-    const res = await fetch('manifest.json', { cache: 'no-store' });
+    const res = await fetch('manifest.json');
     if (!res.ok) throw new Error('no manifest');
     const data = await res.json();
     let list = Array.isArray(data) ? data : data.images;
