@@ -6,7 +6,7 @@ This folder is deployed via **GitHub Pages → Source: `main` / `docs`**.
 
 - `index.html` — **pure mosaic wall**: no header/footer, just `div.grid` infinite scroll, hover pop (`scale 1.02` + shadow), click → lightbox full. Purely pictures.
 - `style.css` — mosaic grid: `gap: 2px`, `grid-auto-flow: dense`, span variants for rhythm, fills viewport.
-- `script.js` — loads `manifest.json` (lists `funny/` only) and renders cards lazily; click or Enter to open lightbox (ESC to close).
+- `script.js` — loads `manifest.json` (lists `funny/` only, with cache-busting via `MANIFEST_VERSION`) and renders cards lazily; click or Enter to open lightbox (ESC to close).
 - `funny/` — **all funny shoebills (default)** — **shown** as one infinite mosaic. All images are confirmed funny; new batches go here by default.
 - `manifest.json` — list of all wall images (`funny/*` sorted **oldest-first by file mtime**, alphabetical tiebreaker) — keep in sync! (`node scripts/sync-manifest.js`)
 - `.nojekyll` — disables Jekyll
