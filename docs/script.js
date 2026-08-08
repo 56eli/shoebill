@@ -6,12 +6,16 @@ const lightboxClose = document.getElementById('lightbox-close');
 
 let images = [];
 
+// Cache-busting version for manifest.json - increment when images change
+// This ensures returning users see new images without hard-refresh
+const MANIFEST_VERSION = '20260808-2';
+
 // load from manifest.json (generated from docs/funny/ only — placeholder deleted 2026-08-08)
 // sorted oldest-first by file mtime (ascending); alphabetical tiebreaker when mtimes match
 // fallback hard-coded 80 — keep in sync via scripts/sync-manifest.js
 async function loadImages() {
   try {
-    const res = await fetch('manifest.json');
+    const res = await fetch(`manifest.json?v=${MANIFEST_VERSION}`);
     if (!res.ok) throw new Error('no manifest');
     const data = await res.json();
     let list = Array.isArray(data) ? data : data.images;
@@ -38,7 +42,6 @@ async function loadImages() {
   // Run: node scripts/sync-manifest.js  then copy the images array into this fallback
   return [
     "funny/shoebill-archaeologist-dino-bones.jpg",
-    "funny/shoebill-archery-target-bullseye.jpg",
     "funny/shoebill-astronaut-moon.jpg",
     "funny/shoebill-astronomer-stargazer-charts.jpg",
     "funny/shoebill-astronomer-telescope-stargazing.jpg",
@@ -95,8 +98,6 @@ async function loadImages() {
     "funny/shoebill-painter-easel-beret.jpg",
     "funny/shoebill-pancake-breakfast-syrup.jpg",
     "funny/shoebill-pastry-chef-croissant.jpg",
-    "funny/shoebill-pilot-airplane-cockpit.jpg",
-    "funny/shoebill-pilot-helicopter-headset.jpg",
     "funny/shoebill-pirate-parrot-lookout.jpg",
     "funny/shoebill-pizza-chef-toss.jpg",
     "funny/shoebill-potter-tea-ceremony.jpg",
@@ -137,6 +138,8 @@ async function loadImages() {
     "funny/shoebill-architect-blueprints.jpg",
     "funny/shoebill-chef-kitchen-fire.jpg",
     "funny/shoebill-baker-cupcake-frosting.jpg",
+    "funny/shoebill-pilot-airplane-cockpit.jpg",
+    "funny/shoebill-archery-target-bullseye.jpg",
   ];
 }
 
