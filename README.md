@@ -43,7 +43,7 @@ docs/
   style.css         # mosaic grid, hover pop (scale 1.02)
   script.js         # loads manifest.json (funny only)
   manifest.json     # list of ALL wall images (funny sorted)
-  funny/            # ✅ shown (all batches default here, 60 currently)
+  funny/            # ✅ shown (all batches default here, 70 currently)
   .nojekyll
 unfunny/            # ❌ never shown, not deployed (repo root only)
 funny/              # alias/mirror of docs/funny at repo root
@@ -69,7 +69,7 @@ See `agent.md`, `AGENT.md`, `AGENTS.md`, `CONTRIBUTING.md`, `docs/README.md`.
 
 ## curation (now)
 
-- All 60 in `docs/funny/` are **confirmed funny** (including initial, migrated, and new batches).
+- All 70 in `docs/funny/` are **confirmed funny** (including initial, migrated, and new batches).
 - New batch (10) → `docs/funny/` (shown) → user later manually demotes to `unfunny/` if needed (disappears after sync)
 - After any move, `node scripts/sync-manifest.js` + push
 - Placeholder deleted — no longer used.

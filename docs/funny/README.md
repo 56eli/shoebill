@@ -3,7 +3,7 @@
 This folder **is** the website — pure mosaic, only pictures.
 
 - `docs/funny/` is the only image folder served from `main /docs`. Every image here is shown as one infinite mosaic in `docs/index.html` (via `docs/manifest.json`).
-- All 60 current images are confirmed funny; all new batches default here.
+- All 70 current images are confirmed funny; all new batches default here.
 - Hover pops (`scale 1.02`), click lightbox. No header/footer, just mosaic `gap:2px`.
 
 ## workflow (updated 2026-08-08)
