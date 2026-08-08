@@ -17,7 +17,7 @@ GitHub Pages wall (`main`/`docs`) is a **pure mosaic, infinitely scrollable, onl
 
 ## 2) Golden rules (from the owner — never break)
 
-1. **ALWAYS generate 10 images per prompt AND after every `ask_user` answer.** The tool allows up to 10 per turn — you ALWAYS create 10 funny shoebill images, even if the user didn’t ask, and also after the user answers any `ask_user` question. No exceptions. Be *very* creative and *very* detailed (scenario + mood + lighting + camera + shoebill expression). All 30 current images are confirmed funny — future batches also default to funny.
+1. **ALWAYS generate 10 images per prompt AND after every `ask_user` answer.** The tool allows up to 10 per turn — you ALWAYS create 10 funny shoebill images, even if the user didn’t ask, and also after the user answers any `ask_user` question. No exceptions. Be *very* creative and *very* detailed (scenario + mood + lighting + camera + shoebill expression). All 119 current images are confirmed funny — future batches also default to funny.
 2. **ONLY THE USER decides what is funny.** You default every new picture to `funny/`; the user will **manually review later and mark not-funny at will** by moving `docs/funny/xxx.jpg` → `unfunny/xxx.jpg`. Never argue, never keep an image in `funny` after the user says it’s not funny — move it immediately to `unfunny/` + re-sync.
 3. **Folder contract (UPDATED 2026-08-08 — placeholder deleted):**
    - `docs/funny/` — **canonical funny wall, default for all new batches**. Every image here appears on the mosaic via `docs/manifest.json`. This *is* the `funny` folder for Pages. Keep `funny/` (root alias) in sync if you use it (`cp docs/funny/*.jpg funny/`).
@@ -123,7 +123,7 @@ Action: In GitHub web editor, create/replace entire file with content below:
 
 You copy-paste the whole file — agents cannot push workflows automatically without your manual step.
 
-**PR merge (handoff):** Arena branch is `arena/019fe2c4-shoebill`. To go live: `gh pr create --base main --head arena/019fe2c4-shoebill` then `gh pr merge --merge` (or via web UI: Pull requests → New → compare `arena/...` → Create → Merge). Session expires on merge — push before merging to safeguard.
+**PR merge (handoff):** Arena branch is `arena/019fe307-shoebill`. To go live: `gh pr create --base main --head arena/019fe307-shoebill` then `gh pr merge --merge` (or via web UI: Pull requests → New → compare `arena/...` → Create → Merge). Session expires on merge — push before merging to safeguard.
 
 ---
 

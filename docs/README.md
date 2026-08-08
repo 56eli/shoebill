@@ -8,7 +8,7 @@ This folder is deployed via **GitHub Pages → Source: `main` / `docs`**.
 - `style.css` — mosaic grid: `gap: 2px`, `grid-auto-flow: dense`, span variants for rhythm, fills viewport.
 - `script.js` — loads `manifest.json` (lists `funny/` only, with cache-busting via `MANIFEST_VERSION`) and renders cards lazily; click or Enter to open lightbox (ESC to close).
 - `funny/` — **all funny shoebills (default)** — **shown** as one infinite mosaic. All images are confirmed funny; new batches go here by default.
-- `manifest.json` — list of all wall images (`funny/*` sorted **oldest-first by file mtime**, alphabetical tiebreaker) — keep in sync! (`node scripts/sync-manifest.js`)
+- `manifest.json` — list of all wall images (`funny/*` sorted **alphabetically by filename** for stable order) — keep in sync! (`node scripts/sync-manifest.js`)
 - `.nojekyll` — disables Jekyll
 
 `unfunny/` lives at **repo root** (outside `docs`) so it is never deployed/shown. `placeholder/` was **deleted 2026-08-08** — all future images default to `funny/`; user will manually move not-funny to `unfunny/` at will. Folders are repo-only — site shows only pictures.
@@ -28,18 +28,18 @@ python -m http.server 8000 --directory docs
 
 Ensure `0.0.0.0` bind for Arena preview proxy.
 
-## image sort order — oldest first (updated 2026-08-08)
+## image sort order — stable filename order (updated 2026-08-08)
 
-Images on the wall are now sorted **oldest-first by file modification time (mtime)**. This means:
+Images on the wall are sorted **alphabetically by filename**. This means:
 
-- The oldest images appear first in the mosaic grid.
-- Newly added images appear at the **end** of the grid (newest).
-- When two files have the same mtime (e.g. batch-uploaded together), they fall back to **alphabetical order** by filename as a stable tiebreaker.
+- The order is deterministic across fresh clones, checkouts, deploys, and cache-busting updates.
+- Running `node scripts/sync-manifest.js` does not churn the manifest just because file mtimes changed.
+- New images appear in filename order rather than depending on checkout timestamps.
 
 This is implemented in two places:
 
-1. **`scripts/sync-manifest.js`** — reads each file's `mtimeMs` via `fs.statSync`, sorts ascending (oldest first), writes `{src, mtime}` objects into `manifest.json`.
-2. **`docs/script.js`** — on load, reads `manifest.json`; if entries carry an `mtime` field, sorts the list oldest-first client-side before rendering. The hard-coded fallback array is also kept in mtime-sorted order.
+1. **`scripts/sync-manifest.js`** — reads `docs/funny/`, sorts filenames ascending with `localeCompare`, and writes a plain JSON array into `manifest.json`.
+2. **`docs/script.js`** — on load, reads `manifest.json`, normalizes paths from both array and legacy object formats, and sorts by path before rendering. The fallback array is regenerated between marker comments by the sync script.
 
 To regenerate the manifest after adding/removing images:
 
@@ -52,8 +52,8 @@ bash scripts/sync-funny.sh
 ## adding images (now: default to funny)
 
 1. Drop `shoebill-*.jpg` into `docs/funny/` (all shown).
-2. Run `node scripts/sync-manifest.js` — re-sorts all images oldest-first by mtime and writes `manifest.json`.
-3. Also mirror to root alias: `bash scripts/sync-funny.sh`
+2. Run `node scripts/sync-manifest.js` — sorts all images by filename and writes `manifest.json`.
+3. Also mirror to root alias: `bash scripts/sync-funny.sh docs->root`
 4. Push to `main` via PR — Pages redeploys in ~1 min.
 
 No need to edit `index.html` when adding — just update manifest.
@@ -70,5 +70,5 @@ Settings → Pages → Build and deployment → Source: Deploy from a branch →
 
 ## current image count
 
-- **90 images** total in `docs/funny/` (80 original + 10 new batch added 2026-08-08).
-- New batch: `shoebill-chess-grandmaster`, `shoebill-bullfighter-cape`, `shoebill-sheriff-badge`, `shoebill-ultimate-frisbee`, `shoebill-lighthouse-keeper`, `shoebill-maya-temple`, `shoebill-astronomy-telescope`, `shoebill-windsurfer`, `shoebill-motorcycle-helmet`, `shoebill-circus-ape`.
+- **119 images** total in `docs/funny/` as of 2026-08-08.
+- Regenerate `docs/manifest.json` after adding or moving any wall images.
