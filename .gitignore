@@ -1,0 +1,8 @@
+# keep images tracked, but ignore temp cruft
+.DS_Store
+Thumbs.db
+*.tmp
+tmp/
+_arena/
+# RESPONSE.md is allowed — used for multi-line agent summaries (temporary but can be committed once)
+# agents: prefer RESPONSE.md for long output, then remove or keep as needed
