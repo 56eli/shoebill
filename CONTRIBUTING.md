@@ -2,7 +2,7 @@
 
 ## who decides funny?
 
-**Only the owner (`@56eli`) decides what is funny.** AI agents and contributors never overrule. All 80 current images in `docs/funny/` are confirmed funny. `placeholder/` deleted 2026-08-08 — all new batches default to `funny/`; owner will manually mark not-funny at will.
+**Only the owner (`@56eli`) decides what is funny.** AI agents and contributors never overrule. All 109 current images in `docs/funny/` are confirmed funny. `placeholder/` deleted 2026-08-08 — all new batches default to `funny/`; owner will manually mark not-funny at will.
 
 ## workflow (current)
 
@@ -26,7 +26,7 @@
    git add docs/funny docs/manifest.json funny unfunny
    git commit -m "feat: add 10 shoebills to funny"
    # or demote: feat: demote 2 to unfunny
-   git push origin arena/019fe2c4-shoebill
+   git push origin arena/019fe307-shoebill
    ```
 
 ## image guidelines
@@ -40,7 +40,7 @@
 
 - Wall: `docs/index.html` pure mosaic (no header/footer), dense grid, hover `scale 1.02` + shadow, click lightbox (ESC to close).
 - Manifest: `docs/manifest.json` — source of truth (funny only).
-- Shown: `docs/funny/` → one mosaic (80 currently).
+- Shown: `docs/funny/` → one mosaic (109 currently).
 - Not shown: `unfunny/` (root, outside docs). `placeholder/` deleted.
 - No build step; Pages serves `main` / `docs` directly.
 

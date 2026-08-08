@@ -10,6 +10,21 @@ ROOT_FUNNY="$DIR/funny"
 DOCS_FUNNY="$DIR/docs/funny"
 MODE="${1:-root->docs}"
 
+copy_images() {
+  local src="$1"
+  local dst="$2"
+  local ext
+  shopt -s nullglob nocaseglob
+  mkdir -p "$dst"
+  for ext in jpg jpeg png webp gif avif; do
+    local f
+    for f in "$src"/*."$ext"; do
+      cp -f "$f" "$dst/"
+    done
+  done
+  shopt -u nullglob nocaseglob
+}
+
 sync_pair() {
   local src="$1" dst="$2" label="$3"
   echo "Syncing $label: $src -> $dst ..."
@@ -21,9 +36,18 @@ sync_pair() {
       rsync -av --exclude 'README.md' --exclude '.gitkeep' "$src/" "$dst/"
     fi
   else
-    for f in "$src"/*.{jpg,jpeg,png,webp,gif,avif}; do [ -e "$f" ] || continue; cp -v "$f" "$dst/"; done
+    copy_images "$src" "$dst"
     if [[ "$MODE" == "docs->root" ]]; then
-      for f in "$dst"/*.{jpg,jpeg,png,webp,gif,avif}; do [ -e "$f" ] || continue; bf=$(basename "$f"); [ -e "$src/$bf" ] || { echo "Removing stray $f"; rm -v "$f"; }; done
+      local f base
+      shopt -s nullglob nocaseglob
+      for f in "$dst"/*.{jpg,jpeg,png,webp,gif,avif}; do
+        base=$(basename "$f")
+        if [[ ! -e "$src/$base" ]]; then
+          echo "Removing stray $f"
+          rm -f "$f"
+        fi
+      done
+      shopt -u nullglob nocaseglob
     fi
   fi
 }
@@ -31,7 +55,7 @@ sync_pair() {
 if [[ "$MODE" == "docs->root" ]]; then
   sync_pair "$DOCS_FUNNY" "$ROOT_FUNNY" "funny"
 else
-  if compgen -G "$ROOT_FUNNY/*.jpg" > /dev/null || compgen -G "$ROOT_FUNNY/*.png" > /dev/null || compgen -G "$ROOT_FUNNY/*.jpeg" > /dev/null; then
+  if find "$ROOT_FUNNY" -maxdepth 1 -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.webp' -o -iname '*.gif' -o -iname '*.avif' \) -print -quit 2>/dev/null | grep -q .; then
     sync_pair "$ROOT_FUNNY" "$DOCS_FUNNY" "funny"
   else
     echo "No images in funny/ to sync — skipping"

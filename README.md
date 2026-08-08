@@ -28,11 +28,11 @@ Adding images (now default to funny):
 
 ```bash
 # new batch → docs/funny (shown) — always 10 per prompt + 10 after every ask_user answer
-node scripts/sync-manifest.js  # reads docs/funny only, sorted
+node scripts/sync-manifest.js  # reads docs/funny only, sorts by filename
 cp docs/funny/*.jpg funny/  # mirror root alias
 git add docs/funny docs/manifest.json funny unfunny
 git commit -m "feat: add 10 shoebills"
-git push origin arena/019fe2c4-shoebill
+git push origin arena/019fe307-shoebill
 ```
 
 ## folders (current)
@@ -43,7 +43,7 @@ docs/
   style.css         # mosaic grid, hover pop (scale 1.02)
   script.js         # loads manifest.json (funny only)
   manifest.json     # list of ALL wall images (funny sorted)
-  funny/            # ✅ shown (all batches default here, 80 currently)
+  funny/            # ✅ shown (all batches default here, 109 currently)
   .nojekyll
 unfunny/            # ❌ never shown, not deployed (repo root only)
 funny/              # alias/mirror of docs/funny at repo root
